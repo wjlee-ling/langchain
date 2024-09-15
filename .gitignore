@@ -1,7 +1,12 @@
 .vscode/
 data/
-db/
 
-# env
+db/chroma/*
+!db/chroma/woori_pdf_prev_md
+
+env
 Pipfile
 Pipfile.lock
+
+# txt files for test
+*.txt

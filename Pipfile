@@ -14,6 +14,7 @@ tiktoken = "*"
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 pydantic = "*"
+pdfplumber = "*"
 
 [dev-packages]
 black = "*"

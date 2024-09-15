@@ -12,7 +12,7 @@ def create_collection(
     directory: str = "db/chroma/",
 ) -> VectorStore:
     """Build a new collection for the local Chroma vectorstore"""
-    directory = directory + "/" + collection_name
+    directory = directory + collection_name
     return Chroma.from_documents(
         collection_name=collection_name,
         documents=docs,
@@ -22,3 +22,28 @@ def create_collection(
             "hnsw:space": "cosine"
         },  # default is "l2" (https://docs.trychroma.com/usage-guide)
     )
+
+
+def create_save_collection(
+    collection_name: str,
+    docs: List[Document],
+):
+    import chromadb
+
+    DB_DIR = "db/chroma/"
+    client_settings = chromadb.config.Settings(
+        chroma_db_impl="duckdb+parquet",
+        persist_directory=DB_DIR,
+        anonymized_telemetry=False,
+    )
+    embeddings = OpenAIEmbeddings()
+    vectorstore = Chroma(
+        collection_name=collection_name,
+        embedding_function=embeddings,
+        client_Settings=client_settings,
+        persist_direcitory=DB_DIR,
+    )
+    vectorstore.add_documents(docs, embeddings)
+    vectorstore.persist()
+
+    return vectorstore

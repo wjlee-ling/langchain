@@ -6,6 +6,7 @@
 - `ConversationalRetrievalChain`
 ### Streamlit
 - [데모](https://tnet-bot.streamlit.app/) 
+- `streamlit` 브랜치 기반으로 deploy
 ### API 제공
 - FastAPI
-- [ ] url 연결 예정
+- [X] url 연결 예정

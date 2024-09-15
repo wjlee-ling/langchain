@@ -1,4 +1,4 @@
-from models import QARetriever
+from modules import QARetriever
 
 from typing import Union
 from fastapi import FastAPI
